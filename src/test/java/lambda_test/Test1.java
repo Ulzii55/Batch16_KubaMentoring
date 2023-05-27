@@ -1,6 +1,7 @@
 package lambda_test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,15 +39,21 @@ public class Test1 {
         country.sendKeys("United States");
         WebElement city = driver.findElement(By.xpath("//input[@id='inputCity']"));
         city.sendKeys("Chicago");
-        WebElement address = driver.findElement(By.xpath("//input[@id='inputAddress1']"));
-        address.sendKeys("1234 Devon street");
+        WebElement address1 = driver.findElement(By.xpath("//input[@id='inputAddress1']"));
+        address1.sendKeys("1234 Devon street");
+        WebElement address2=driver.findElement(By.xpath("//input[@id='inputAddress2']"));
+        address2.sendKeys("room 220");
         WebElement state = driver.findElement(By.xpath("//input[@id='inputState']"));
         state.sendKeys("IL");
         WebElement zipCode = driver.findElement(By.xpath("//input[@id='inputZip']"));
         zipCode.sendKeys("60078");
         WebElement submit = driver.findElement(By.xpath("//button[.='Submit']"));
         submit.click();
+        WebElement actualMsg=driver.findElement(By.xpath("//p[@class='success-msg hidden']"));
 
+         String actualText= actualMsg.getText().trim();
+         String expectedText="Thanks for contacting us, we will get back to you shortly.";
+         Assert.assertEquals(actualText,expectedText);
 
     }
 }
