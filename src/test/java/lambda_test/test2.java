@@ -71,7 +71,7 @@ public class test2 {
         List<WebElement> allNames = driver.findElements(By.xpath("//tr//td[2]"));
         List<WebElement> allPhoneNumbers = driver.findElements(By.xpath("//tr//td[4]"));
 
-        TreeMap<String, Long> map2 = null;
+        TreeMap<String, Long> map2 = new TreeMap<>();
         for (int i = 0; i < allNames.size(); i++) {
             map2 = new TreeMap<>();
 
