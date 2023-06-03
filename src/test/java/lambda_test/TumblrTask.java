@@ -35,17 +35,13 @@ public class TumblrTask {
         passWord.sendKeys("12345");
         passWord.sendKeys(Keys.ENTER);
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        WebElement errorMessage = driver.findElement(By.xpath("//div[@class='a0A37 hAkP2']"));
+        if (errorMessage.isDisplayed()) {
+            String errorMessageText = errorMessage.getText().trim();
+            String expectedErrorMessage = "Your email or password were incorrect.";
+            Assert.assertEquals(errorMessageText, expectedErrorMessage);
+
         }
-
-        WebElement errorMessage = driver.findElement(By.xpath("//div[contains(@class,'error')]"));
-        String errorMessageText = errorMessage.getText().trim();
-        String expectedErrorMessage = "Incorrect email address or password.";
-        Assert.assertEquals(errorMessageText, expectedErrorMessage);
-
 
     }
 }
